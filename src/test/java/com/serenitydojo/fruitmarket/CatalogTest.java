@@ -32,6 +32,12 @@ public class CatalogTest {
         assertThat(catalog.getPriceOf(Apple)).isEqualTo(3.45);
     }
 
+    @Test(expected = FruitNotAvailableException.class)
+    public void update_price_of_a_fruit_not_in_catalog() {
+
+        catalog.setPriceOf(Pear, 3.45);
+    }
+
     @Test
     public void list_all_available_fruits() {
 

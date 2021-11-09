@@ -21,15 +21,17 @@ public class Catalog {
     }
 
     public double getPriceOf(Fruits fruit) {
-        if(fruitCatalog.containsKey(fruit)) {
+        if (fruitCatalog.containsKey(fruit)) {
             return fruitCatalog.get(fruit);
         }
         throw new FruitNotAvailableException(fruit.name() + " is not available");
     }
 
     public void setPriceOf(Fruits fruit, Double price) {
-        if(fruitCatalog.containsKey(fruit)) {
+        if (fruitCatalog.containsKey(fruit)) {
             fruitCatalog.replace(fruit, price);
+        } else {
+            throw new FruitNotAvailableException(fruit.name() + " is not available");
         }
     }
 

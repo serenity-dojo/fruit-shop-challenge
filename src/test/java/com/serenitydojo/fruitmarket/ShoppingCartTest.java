@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import static com.serenitydojo.fruitmarket.Fruits.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -15,7 +16,8 @@ public class ShoppingCartTest {
 
     @Before
     public void create_a_catalog() {
-        HashMap<Fruits, Double> newCatalog = new HashMap<>();
+//        HashMap<Fruits, Double> newCatalog = new HashMap<>();
+        Map<Fruits, Double> newCatalog = new HashMap<>();
         newCatalog.put(Apple, 4.00);
         newCatalog.put(Orange, 5.50);
         newCatalog.put(Banana, 6.00);
