@@ -34,7 +34,7 @@ public class Catalog {
 
     /**
      * to get the available fruits in the fruits shop.
-     * Returns list the names of the currently available fruit in alphabetical order.
+     * Returns list of names of (type String)currently available fruits sorted in alphabetical order.
      */
 public List<String> getAvailableFruits() {
     return pricePerKilo.keySet()
@@ -71,6 +71,7 @@ public Double getPrice(Fruit fruit){
   public void setPrice(Fruit fruit,Double price){
       pricePerKilo.put(fruit, price);
   }
+
     public class PriceSetter {
       private final Catalog catalog;
       private final Fruit fruit;
