@@ -10,39 +10,42 @@ public class WhenCheckingWhatIsInsideTheCatalog {
 
     @Before
     public void setUpTheCatalog(){
-        catalog.addFruitWithPrice(Fruit.Banana, 4.5);
-        catalog.addFruitWithPrice(Fruit.Abricot, 5.5);
-        catalog.addFruitWithPrice(Fruit.Apple, 4.0);
-        catalog.addFruitWithPrice(Fruit.Strawberry, 6.0);
+
+        catalog.addFruitWithPriceAndQuantityInTheCatalog(Fruit.Bananas, 4.5, 15);
+        catalog.addFruitWithPriceAndQuantityInTheCatalog(Fruit.Abricots, 5.5, 23);
+        catalog.addFruitWithPriceAndQuantityInTheCatalog(Fruit.Apples, 4.0, 57);
+        catalog.addFruitWithPriceAndQuantityInTheCatalog(Fruit.Strawberries, 6.0, 8);
     }
 
-    //You can update the catalog with the current market price of a fruit
     @Test
     public void the_catalog_should_be_updatable_with_the_current_market_price_of_a_fruit(){
-        catalog.updatedPriceOfAFruit(Fruit.Apple, 5.0);
-        double applePrice = catalog.getPriceOf(Fruit.Apple);
+        catalog.updatedPriceOfAFruit(Fruit.Apples, 5.0);
+        double applePrice = catalog.getPriceOf(Fruit.Apples);
 
         assertThat(applePrice).isEqualTo(5.0);
     }
 
     @Test
     public void The_catalog_should_list_the_names_of_the_currently_available_fruit_in_alphabetical_order() {
-        catalog.addFruitWithPrice(Fruit.Cherry, 6.0);
+        catalog.addFruitWithPriceAndQuantityInTheCatalog(Fruit.Cherries, 6.0, 42);
 
         assertThat(catalog.getAllListedFruitsInAlphabeticalOrder()).hasSize(5);
         assertThat(catalog
                 .getAllListedFruitsInAlphabeticalOrder())
-                .containsExactly("Abricot", "Apple", "Banana", "Cherry", "Strawberry");
+                .containsExactly("Abricots", "Apples", "Bananas", "Cherries", "Strawberries");
     }
 
     @Test
     public void the_catalog_should_report_the_price_of_a_given_fruit() {
-        assertThat(catalog.getPriceOf(Fruit.Abricot)).isEqualTo(5.5);
+        assertThat(catalog.getPriceOf(Fruit.Abricots)).isEqualTo(5.5);
     }
 
-    @Test(expected = FruitUnavailableException.class)
-    public void The_catalog_should_throw_a_FruitUnavailableException_if_the_fruit_is_not_currently_available () {
-       catalog.getPriceOf(Fruit.Cherry);
+    @Test
+    public void it_should_be_possible_to_know_the_right_amount_of_quantity_left_someone_bought_some_fruits(){
+        ShoppingCart shoppingCart = new ShoppingCart(catalog);
+        shoppingCart.addFruitsIntoTheCartAndGetThePrice(Fruit.Apples, 6.0);
+
+        assertThat(catalog.getQuantityOf(Fruit.Apples)).isEqualTo(51.0);
     }
 
 

@@ -1,26 +1,38 @@
 package com.serenitydojo.fruitShopCartCalculator;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ShoppingCart {
-    Map<Fruit, Integer> fruitAndQuantityForCart = new HashMap<>();
+    private Catalog catalog;
+    private Map<Fruit, Double> fruitsFromCartWithQuantity = new HashMap<>();
+    private Double priceOfTheCart = 0.0;
+    private Double quantityInKilo = 0.0;
 
-    public void addFruits(Map<Fruit, Integer> fruitAndQuantityForCart) {
-        this.fruitAndQuantityForCart = fruitAndQuantityForCart;
 
-        List<String> listInAlphabeticalOrder = new ArrayList<>();
-
-        for (Map.Entry<Fruit, Integer> fruit : fruitAndQuantityForCart.entrySet()) {
-            listInAlphabeticalOrder.add(fruit.getKey().toString());
-        }
-        // TODO
-        //iterate throught the maps
-        // get the quantity of each fruits
-        // multiply the qtt with the price
-        //return the price
-
+    public ShoppingCart(Catalog catalog) {
+        this.catalog = catalog;
     }
+
+    public void addFruitsIntoTheCartAndGetThePrice(Fruit fruit, Double quantityInKilo) {
+        this.quantityInKilo = quantityInKilo;
+
+        fruitsFromCartWithQuantity.put(fruit, quantityInKilo);
+        calculateThePriceOfTheCart(fruit);
+        catalog.calculateRemainingQuantity(fruit, quantityInKilo);
+    }
+
+    private Double calculateThePriceOfTheCart(Fruit fruit) {
+        return this.priceOfTheCart = calculateDiscount(this.priceOfTheCart + (catalog.getPriceOf(fruit) * this.quantityInKilo));
+    }
+
+    public Double displayTheTotalOfTheCart() { return this.priceOfTheCart; }
+
+    private Double calculateDiscount(Double price) {
+        if(this.quantityInKilo >= 5)
+            return price * 0.9;
+
+        return price;
+    }
+
 }
