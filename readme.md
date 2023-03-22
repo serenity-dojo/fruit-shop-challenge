@@ -1,4 +1,4 @@
-## Fruit Shop Cart Calulatior Challenge
+## Fruit Shop Cart Calculator Challenge
 
 In this exercise, your challenge is to write a Fruit Shop Cart Calculator. Write tests code to illustrate the following requirements, and write the additional application code you need to make them work:
 
@@ -10,8 +10,8 @@ In this exercise, your challenge is to write a Fruit Shop Cart Calculator. Write
 - You can update the catalog with the current market price of a fruit
 - The Catalog should list the names of the currently available fruit in alphabetical order
 - The Catalog should report the price of a given type of fruit
-- The Catalog should throw a FruitUnavailableException if the fruit is not currently available
 - You can add items to your shopping cart, which should keep a running total.
+- The Catalog should throw a FruitUnavailableException if the fruit is not currently available
 - When you buy 5 kilos or more of any fruit, you get a 10% discount.
 
-You should end up with at least 10 test cases. The first one is written for you.
+You should end up with at least 10 test cases. See [the catalog test](./src/test/java/com/serenitydojo/fruitmarket/CatalogTest.java) to get started.
