@@ -1,47 +1,46 @@
 package com.serenitydojo.fruitmarket;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.serenitydojo.fruitmarket.Fruit.*;
-
 public class Catalog {
+    private final List<CatalogItem> availableFruits = new ArrayList<>();
+    private final Map<Fruit, Double> fruitToPricePerKg = new HashMap<>();
 
-    private Map<Fruit, Double> pricePerKilo = new HashMap<>();
-
-    public PriceSetter setPriceOf(Fruit fruit) {
-        return new PriceSetter(this, fruit);
+    public void setPriceOf(Fruit fruit, double pricePerKg) {
+        fruitToPricePerKg.put(fruit, pricePerKg);
     }
 
-    public List<String> getAvailableFruit() {
-        return pricePerKilo.keySet()
-                .stream()
-                .map(Enum::name)
-                .sorted()
-                .collect(Collectors.toList());
+    public static Catalog withItems(CatalogItem... catalogItems) {
+        Catalog catalog = new Catalog();
+        catalog.availableFruits.addAll(Arrays.asList(catalogItems));
+        return catalog;
+    }
+
+    public List<CatalogItem> getAvailableFruits() {
+        return availableFruits;
     }
 
     public Double getPriceOf(Fruit fruit) {
-        if (pricePerKilo.containsKey(fruit)) {
-            return pricePerKilo.get(fruit);
-        }
-        throw new FruitUnavailableException(fruit.name() + " currently unavailable");
+        return fruitToPricePerKg.get(fruit);
     }
 
-    public static class PriceSetter {
-        private final Catalog catalog;
-        private final Fruit fruit;
-
-        public PriceSetter(Catalog catalog, Fruit fruit) {
-            this.catalog = catalog;
-            this.fruit = fruit;
+    public CatalogItem getFruit(Fruit fruit, int amountInKg) {
+        List<CatalogItem> itemsForFruit = getAvailableFruits().stream()
+                .filter(it -> it.getFruit().equals(fruit)).collect(Collectors.toList());
+        if (itemsForFruit.isEmpty()) {
+            throw new FruitUnavailableException("no such fruit");
         }
-
-        public Catalog to(Double price) {
-            catalog.pricePerKilo.put(fruit, price);
-            return catalog;
+        Optional<CatalogItem> optionalCatalogItem = itemsForFruit.stream()
+                .filter(it -> it.getAmountInKg() == amountInKg)
+                .findFirst();
+        if (optionalCatalogItem.isPresent()) {
+            return optionalCatalogItem.get();
         }
+        throw new FruitUnavailableException("no such amount");
+    }
+
+    public String getAvailableFruitNames() {
+        return getAvailableFruits().stream().map(it -> it.getFruit().name()).sorted().collect(Collectors.joining(", "));
     }
 }
