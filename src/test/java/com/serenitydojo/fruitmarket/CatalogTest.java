@@ -18,9 +18,9 @@ public class CatalogTest {
     public void shouldListAvailableFruitsAlphabetically() {
 // TODO: Uncomment this code and make it work
         // Catalog catalog = Catalog.withItems(
-        //         new CatalogItem(Pear, 1),
-        //         new CatalogItem(Apple, 1),
-        //         new CatalogItem(Banana, 1)
+        //         new CatalogItem(Pear),
+        //         new CatalogItem(Apple),
+        //         new CatalogItem(Banana)
         // );
         // List<CatalogItem> availableFruits = catalog.getAvailableFruits();
         // assertThat(availableFruits.get(0).getFruit()).isEqualTo(Apple);
