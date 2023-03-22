@@ -22,9 +22,7 @@ public class CatalogTest {
         //         new CatalogItem(Apple),
         //         new CatalogItem(Banana)
         // );
-        // List<CatalogItem> availableFruits = catalog.getAvailableFruits();
-        // assertThat(availableFruits.get(0).getFruit()).isEqualTo(Apple);
-        // assertThat(availableFruits.get(1).getFruit()).isEqualTo(Banana);
-        // assertThat(availableFruits.get(2).getFruit()).isEqualTo(Pear);
+        // String availableFruits = catalog.getAvailableFruitNames();
+        // assertThat(availableFruits).isEqualTo("Apple, Banana, Pear");
     }
 }
