@@ -1,14 +1,10 @@
 package com.serenitydojo.fruitmarket;
 
-import com.serenitydojo.Catalog;
-import com.serenitydojo.CatalogItem;
-import com.serenitydojo.FruitUnavailableException;
-import com.serenitydojo.ShoppingCart;
 import org.junit.Test;
 
 import static org.junit.Assert.assertThrows;
 
-import static com.serenitydojo.Fruit.*;
+import static com.serenitydojo.fruitmarket.Fruit.*;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class CatalogTest {
@@ -70,6 +66,21 @@ public class CatalogTest {
         assertThat(cart.getTotal()).isEqualTo(5.0);
         cart.addItem(Apple, 1);
         assertThat(cart.getTotal()).isEqualTo(5.4);
+    }
+
+    @Test
+    public void noDiscountWhenDifferentFruits() {
+        Catalog catalog = Catalog.withItems(
+                new CatalogItem(Pear, 5),
+                new CatalogItem(Apple, 1)
+        );
+        catalog.setPriceOf(Apple, 1.00);
+        catalog.setPriceOf(Pear, 1.00);
+        ShoppingCart cart = new ShoppingCart(catalog);
+        cart.addItem(Pear, 5);
+        assertThat(cart.getTotal()).isEqualTo(5.0);
+        cart.addItem(Apple, 1);
+        assertThat(cart.getTotal()).isEqualTo(6);
     }
 
     private static Catalog catalogWithSomeItemsAndPricesForEverything() {

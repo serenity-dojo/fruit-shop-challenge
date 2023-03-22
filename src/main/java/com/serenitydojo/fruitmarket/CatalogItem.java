@@ -1,4 +1,4 @@
-package com.serenitydojo;
+package com.serenitydojo.fruitmarket;
 
 public class CatalogItem {
 
