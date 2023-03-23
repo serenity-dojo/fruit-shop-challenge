@@ -1,11 +1,10 @@
 package com.serenitydojo.fruitmarket;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
 
 import static com.serenitydojo.fruitmarket.Fruit.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CatalogTest {
 
