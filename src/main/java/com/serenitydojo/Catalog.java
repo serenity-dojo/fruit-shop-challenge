@@ -5,7 +5,7 @@ import java.util.*;
 public class Catalog {
     public void setPriceOf(Fruit fruit, double price) {
         throw new RuntimeException("TODO, create a map to keep track of fruits and their prices");
-        // fruitToPrice.put(fruit.name(), price);
+        // fruitToPrice.put(fruit, price);
     }
 
     public static Catalog withItems(CatalogItem... catalogItems) {

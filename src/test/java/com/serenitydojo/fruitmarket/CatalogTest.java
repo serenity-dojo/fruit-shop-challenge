@@ -1,6 +1,6 @@
 package com.serenitydojo.fruitmarket;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,13 +18,11 @@ public class CatalogTest {
     public void shouldListAvailableFruitsAlphabetically() {
 // TODO: Uncomment this code and make it work
         // Catalog catalog = Catalog.withItems(
-        //         new CatalogItem(Pear, 1),
-        //         new CatalogItem(Apple, 1),
-        //         new CatalogItem(Banana, 1)
+        //         new CatalogItem(Pear),
+        //         new CatalogItem(Apple),
+        //         new CatalogItem(Banana)
         // );
-        // List<CatalogItem> availableFruits = catalog.getAvailableFruits();
-        // assertThat(availableFruits.get(0).getFruit()).isEqualTo(Apple);
-        // assertThat(availableFruits.get(1).getFruit()).isEqualTo(Banana);
-        // assertThat(availableFruits.get(2).getFruit()).isEqualTo(Pear);
+        // String availableFruits = catalog.getAvailableFruitNames();
+        // assertThat(availableFruits).isEqualTo("Apple, Banana, Pear");
     }
 }
